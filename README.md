@@ -1,36 +1,52 @@
 # PrivEsc-Guard
 
-PrivEsc-Guard is a Linux security auditing and hardening tool focused on detecting common **local privilege escalation vectors**.
+<a href="https://www.buymeacoffee.com/davidcanasz" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="45" alt="Buy Me a Coffee">
+</a>
 
-## 🎯 Purpose
+PrivEsc-Guard es una herramienta de **auditoría de seguridad y hardening en Linux** enfocada en la detección de **vectores comunes de escalada local de privilegios**.
 
-The goal of this project is to help system administrators and security professionals:
+## 🎯 Objetivo
 
-- Identify insecure configurations that may lead to privilege escalation
-- Understand the associated risk of each finding
-- Apply clear and actionable mitigation steps
-- Improve overall Linux system hardening
+El objetivo de este proyecto es ayudar a administradores de sistemas y profesionales de la ciberseguridad a:
 
-## 🔍 Scope
+- Identificar configuraciones inseguras que pueden derivar en escalada de privilegios
+- Comprender el riesgo asociado a cada hallazgo
+- Aplicar medidas de mitigación claras y accionables
+- Mejorar el nivel general de hardening en sistemas Linux
 
-PrivEsc-Guard focuses exclusively on **local privilege escalation checks**, including but not limited to:
+## 🔍 Alcance
 
-- SUID / SGID binaries
-- sudo misconfigurations
-- Insecure file permissions
-- Cron jobs
-- Linux capabilities
-- Docker socket exposure
+PrivEsc-Guard se centra **exclusivamente en la escalada local de privilegios**, incluyendo (pero no limitado a):
 
-> This tool does **not** exploit vulnerabilities.  
-> It is designed for **audit, visibility and hardening** purposes.
+- Binarios SUID / SGID
+- Configuraciones inseguras de sudo
+- Permisos incorrectos en archivos críticos
+- Tareas cron mal configuradas
+- Linux capabilities peligrosas
+- Exposición del socket de Docker
 
-## 🚧 Project Status
+> Esta herramienta **NO explota vulnerabilidades**.  
+> Está diseñada para **auditoría, visibilidad y hardening**.
 
-This project is currently under active development.  
-Initial versions focus on core architecture and basic security checks.
+## 🧱 Filosofía del proyecto
+
+PrivEsc-Guard no se limita a detectar problemas.  
+Cada hallazgo proporciona:
+
+- Descripción del riesgo
+- Explicación del impacto
+- Referencias técnicas
+- Recomendaciones de mitigación
+
+El objetivo es **aprender y reforzar**, no solo escanear.
+
+## 🚧 Estado del proyecto
+
+Este proyecto se encuentra actualmente en **desarrollo activo**.  
+Las primeras versiones se centran en la arquitectura base y los checks fundamentales.
 
 ## ⚠️ Disclaimer
 
-PrivEsc-Guard is intended for **authorized systems only**.  
-The author is not responsible for misuse or damage caused by this tool.
+PrivEsc-Guard está destinado **únicamente a sistemas donde se tenga autorización expresa**.  
+El autor no se hace responsable del uso indebido de esta herramienta.
