@@ -9,6 +9,7 @@ source "$BASE_DIR/core/config.sh"
 source "$BASE_DIR/core/banner.sh"
 source "$BASE_DIR/core/utils.sh"
 source "$BASE_DIR/modules/suid_check.sh"
+source "$BASE_DIR/modules/sudo_check.sh"
 
 main() {
   print_banner
@@ -16,6 +17,7 @@ main() {
   log_info "Iniciando PrivEsc-Guard..."
 
   check_suid_sgid
+  check_sudo
 }
 
 main
