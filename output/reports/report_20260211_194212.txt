@@ -1,0 +1,174 @@
+[0;35m[1m
+==================================
+        PrivEsc-Guard v0.1
+ Linux Privilege Escalation Audit
+==================================
+[0m
+[0;33m[!][0m Ejecutando sin privilegios root. Algunos checks pueden estar limitados.
+[0;34m[i][0m Iniciando PrivEsc-Guard...
+[0;34m[i][0m Buscando binarios SUID / SGID...
+[0;33m[!][0m Se han encontrado binarios con SUID/SGID:
+  [0;33m[REVISAR][0m /usr/lib/dbus-1.0/dbus-daemon-launch-helper
+  [0;33m[REVISAR][0m /usr/lib/xorg/Xorg.wrap
+  [0;33m[REVISAR][0m /usr/lib/polkit-1/polkit-agent-helper-1
+  [0;33m[REVISAR][0m /usr/lib/chromium/chrome-sandbox
+  [0;33m[REVISAR][0m /usr/lib/openssh/ssh-keysign
+  [0;33m[REVISAR][0m /usr/sbin/mount.cifs
+  [0;33m[REVISAR][0m /usr/sbin/pppd
+  [0;33m[REVISAR][0m /usr/sbin/mount.nfs
+  [0;33m[REVISAR][0m /usr/sbin/unix_chkpwd
+  [0;33m[REVISAR][0m /usr/bin/mount
+  [0;33m[REVISAR][0m /usr/bin/kismet_cap_linux_bluetooth
+  [0;33m[REVISAR][0m /usr/bin/ssh-agent
+  [0;33m[REVISAR][0m /usr/bin/crontab
+  [0;33m[REVISAR][0m /usr/bin/su
+  [0;33m[REVISAR][0m /usr/bin/chage
+  [0;33m[REVISAR][0m /usr/bin/chsh
+  [0;33m[REVISAR][0m /usr/bin/kismet_cap_linux_wifi
+  [0;33m[REVISAR][0m /usr/bin/kismet_cap_nrf_52840
+  [0;33m[REVISAR][0m /usr/bin/kismet_cap_ti_cc_2540
+  [0;33m[REVISAR][0m /usr/bin/sudo
+  [0;33m[REVISAR][0m /usr/bin/expiry
+  [0;33m[REVISAR][0m /usr/bin/chfn
+  [0;33m[REVISAR][0m /usr/bin/fusermount3
+  [0;33m[REVISAR][0m /usr/bin/kismet_cap_hak5_wifi_coconut
+  [0;33m[REVISAR][0m /usr/bin/kismet_cap_rz_killerbee
+  [0;33m[REVISAR][0m /usr/bin/kismet_cap_ti_cc_2531
+  [0;33m[REVISAR][0m /usr/bin/kismet_cap_nrf_51822
+  [0;33m[REVISAR][0m /usr/bin/dotlockfile
+  [0;33m[REVISAR][0m /usr/bin/pkexec
+  [0;33m[REVISAR][0m /usr/bin/kismet_cap_ubertooth_one
+  [0;33m[REVISAR][0m /usr/bin/rsh-redone-rlogin
+  [0;33m[REVISAR][0m /usr/bin/kismet_cap_nxp_kw41z
+  [0;33m[REVISAR][0m /usr/bin/ntfs-3g
+  [0;33m[REVISAR][0m /usr/bin/rsh-redone-rsh
+  [0;33m[REVISAR][0m /usr/bin/newgrp
+  [0;33m[REVISAR][0m /usr/bin/umount
+  [0;33m[REVISAR][0m /usr/bin/plocate
+  [0;33m[REVISAR][0m /usr/bin/passwd
+  [0;33m[REVISAR][0m /usr/bin/gpasswd
+  [0;33m[REVISAR][0m /usr/bin/kismet_cap_nrf_mousejack
+  [0;33m[REVISAR][0m /opt/brave.com/brave/chrome-sandbox
+
+[0;34m[i][0m Contexto:
+  - Los binarios SUID se ejecutan con privilegios elevados
+  - Algunos permiten ejecutar comandos o shells
+
+[0;34m[i][0m Mitigación recomendada:
+  - Eliminar el bit SUID/SGID si no es estrictamente necesario
+  - Restringir permisos de ejecución
+  - Verificar binarios en GTFOBins
+
+[0;34m[i][0m Referencia:
+  https://gtfobins.github.io/
+[0;34m[i][0m Analizando configuraciones sudo...
+[0;32m[+][0m El usuario puede ejecutar sudo.
+
+[0;34m[i][0m Resultados de sudo -l:
+  [0;33m[REVISAR][0m     env_reset, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin, use_pty
+  [0;33m[REVISAR][0m No se detectaron reglas sudo críticas con NOPASSWD.
+
+[0;34m[i][0m Contexto:
+  - sudo permite ejecutar comandos como root
+  - Reglas NOPASSWD eliminan una barrera de seguridad
+  - Algunos binarios permiten escapar a una shell
+
+[0;34m[i][0m Mitigación recomendada:
+  - Evitar el uso de NOPASSWD siempre que sea posible
+  - No permitir editores o intérpretes vía sudo
+  - Usar comandos específicos y sin comodines
+
+[0;34m[i][0m Referencia:
+  https://gtfobins.github.io/
+[0;34m[i][0m Analizando permisos inseguros en archivos críticos...
+
+  [0;32m[OK][0m /etc/passwd (644)
+  [0;32m[OK][0m /etc/shadow (640)
+  [0;32m[OK][0m /etc/sudoers (440)
+
+[0;34m[i][0m Buscando archivos world-writable en /etc...
+[0;32m[+][0m No se encontraron archivos world-writable en /etc.
+
+[0;34m[i][0m Buscando binarios world-writable en /usr/bin...
+[0;32m[+][0m No se encontraron binarios world-writable en /usr/bin.
+
+[0;34m[i][0m Mitigación recomendada:
+  - Ajustar permisos con chmod
+  - Revisar propiedad de archivos críticos
+  - Evitar permisos 777 en producción
+[0;34m[i][0m Analizando configuraciones de cron...
+
+[0;34m[i][0m Revisando /etc/crontab
+
+[0;34m[i][0m Revisando /etc/cron.d/sysstat
+
+[0;34m[i][0m Revisando /etc/cron.d/e2scrub_all
+  [0;32m[OK][0m /usr/libexec/e2fsprogs/e2scrub_all_cron (755)
+
+[0;34m[i][0m Revisando /etc/cron.d/john
+
+[0;34m[i][0m Revisando /etc/cron.d/.placeholder
+
+[0;34m[i][0m Revisando /etc/cron.d/php
+
+[0;34m[i][0m Mitigación recomendada:
+  - Restringir permisos de scripts ejecutados por cron
+  - Evitar permisos world-writable
+  - Revisar tareas ejecutadas como root
+
+[0;34m[i][0m Analizando Linux Capabilities...
+
+[0;33m[!][0m Se encontraron binarios con capabilities:
+  [0;33m[REVISAR][0m /usr/lib/nmap/nmap cap_net_bind_service,cap_net_admin,cap_net_raw=eip
+  [0;33m[REVISAR][0m /usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper cap_net_bind_service,cap_net_admin,cap_sys_nice=ep
+  [0;33m[REVISAR][0m /usr/bin/dumpcap cap_net_admin,cap_net_raw=eip
+  [0;33m[REVISAR][0m /usr/bin/fping cap_net_raw=ep
+
+[0;34m[i][0m Contexto:
+  - Las capabilities permiten privilegios específicos sin usar SUID
+  - Algunas pueden permitir escalada de privilegios
+
+[0;34m[i][0m Mitigación recomendada:
+  - Revisar si la capability es necesaria
+  - Eliminar con: setcap -r <archivo>
+  - Minimizar privilegios asignados
+
+[0;34m[i][0m Analizando configuración de Docker...
+
+[0;33m[!][0m Docker no está instalado en el sistema.
+[0;34m[i][0m Analizando usuarios con UID 0...
+
+  [0;32m[OK][0m Usuario root detectado.
+[0;32m[+][0m Solo existe el usuario root con UID 0.
+
+[0;34m[i][0m Contexto:
+  - UID 0 tiene privilegios equivalentes a root
+  - Usuarios adicionales con UID 0 representan riesgo crítico
+
+[0;34m[i][0m Mitigación recomendada:
+  - Revisar /etc/passwd
+  - Eliminar usuarios innecesarios con UID 0
+  - Usar sudo en lugar de cuentas root adicionales
+
+[0;34m[i][0m Analizando posibles riesgos de PATH Hijacking...
+
+  [0;32m[OK][0m /home/david/.local/bin (755)
+  [0;32m[OK][0m /usr/local/sbin (755)
+  [0;32m[OK][0m /usr/sbin (755)
+  [0;32m[OK][0m /sbin (755)
+  [0;32m[OK][0m /usr/local/bin (755)
+  [0;32m[OK][0m /usr/bin (755)
+  [0;32m[OK][0m /bin (755)
+  [0;32m[OK][0m /usr/local/games (755)
+  [0;32m[OK][0m /usr/games (755)
+  [0;33m[REVISAR][0m Directorio en PATH no existe: /home/david/.dotnet/tools
+
+[0;34m[i][0m Contexto:
+  - Directorios inseguros en PATH pueden permitir ejecución de binarios maliciosos
+  - El orden del PATH influye en qué binario se ejecuta primero
+
+[0;34m[i][0m Mitigación recomendada:
+  - Evitar permisos world-writable en directorios del PATH
+  - No incluir directorios temporales en el PATH
+  - Colocar directorios seguros antes que otros personalizados
+
