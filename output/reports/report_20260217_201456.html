@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PrivEsc-Guard Report</title>
+<style>
+body {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  font-family: Arial, sans-serif;
+  padding: 40px;
+}
+h1 { color: #58a6ff; }
+.box {
+  background-color: #161b22;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #30363d;
+}
+th { text-align: left; }
+.status-ok { color: #00cc66; }
+.status-alto { color: #ff4d4d; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>PrivEsc-Guard Security Report</h1>
+
+<div class="box">
+  <h2>Risk Score: 0 / 100</h2>
+  <h3 style="color:#00cc66;">Nivel: BAJO</h3>
+</div>
+
+<div class="box">
+  <h2>Resumen por Módulo</h2>
+  <table>
+    <tr><th>Módulo</th><th>Estado</th></tr>
+<tr><td>sudo</td><td class="status-ok">OK</td></tr>
+<tr><td>path</td><td class="status-ok">OK</td></tr>
+<tr><td>suid</td><td class="status-ok">OK</td></tr>
+<tr><td>cron</td><td class="status-ok">OK</td></tr>
+<tr><td>capabilities</td><td class="status-ok">OK</td></tr>
+<tr><td>docker</td><td class="status-ok">OK</td></tr>
+<tr><td>perms</td><td class="status-ok">OK</td></tr>
+<tr><td>uid0</td><td class="status-ok">OK</td></tr>
+  </table>
+</div>
+
+<div class="box">
+  <p><strong>Fecha:</strong> mar 17 feb 2026 20:15:02 CET</p>
+  <p><strong>Versión:</strong> 0.1</p>
+</div>
+
+</body>
+</html>

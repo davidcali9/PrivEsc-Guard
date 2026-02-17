@@ -32,6 +32,7 @@ check_path_hijacking() {
 
     if [[ "$others" =~ [2367] ]]; then
       echo -e "  ${RED}[ALTO RIESGO]${NC} $dir (resuelto a $real_dir) es world-writable ($perms)"
+	add_risk 10
     else
       echo -e "  ${GREEN}[OK]${NC} $dir ($perms)"
     fi

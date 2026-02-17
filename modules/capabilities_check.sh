@@ -26,6 +26,7 @@ check_capabilities() {
     for cap in "${dangerous_caps[@]}"; do
       if [[ "$line" == *"$cap"* ]]; then
         echo -e "  ${RED}[ALTO RIESGO]${NC} $line"
+	add_risk 15
         continue 2
       fi
     done

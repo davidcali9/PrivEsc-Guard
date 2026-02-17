@@ -15,6 +15,7 @@ check_uid0_users() {
       echo -e "  ${GREEN}[OK]${NC} Usuario root detectado."
     else
       echo -e "  ${RED}[ALTO RIESGO]${NC} Usuario adicional con UID 0: $user"
+	add_risk 25
     fi
   done <<< "$uid0_users"
 

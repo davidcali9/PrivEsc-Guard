@@ -23,6 +23,7 @@ check_docker() {
 
     if groups | grep -q docker; then
       echo -e "  ${RED}[ALTO RIESGO]${NC} El usuario pertenece al grupo docker."
+	add_risk 30
     else
       echo -e "  ${YELLOW}[REVISAR]${NC} Verificar acceso al socket Docker."
     fi

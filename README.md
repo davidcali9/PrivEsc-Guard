@@ -1,8 +1,14 @@
+<p align="center">
+  <img src="assets/privesguard.png" width="400">
+</p>
+
 # PrivEsc-Guard
+
 
 <a href="https://www.buymeacoffee.com/davidcanasz" target="_blank">
   <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="45" alt="Buy Me a Coffee">
 </a>
+
 
 PrivEsc-Guard es una herramienta de **auditoría de seguridad y hardening en Linux** enfocada en la detección de **vectores comunes de escalada local de privilegios**.
 
@@ -15,38 +21,67 @@ El objetivo de este proyecto es ayudar a administradores de sistemas y profesion
 - Aplicar medidas de mitigación claras y accionables
 - Mejorar el nivel general de hardening en sistemas Linux
 
-## 🔍 Alcance
+## 🔎 Qué analiza actualmente
 
-PrivEsc-Guard se centra **exclusivamente en la escalada local de privilegios**, incluyendo (pero no limitado a):
+PrivEsc-Guard incluye los siguientes módulos:
 
-- Binarios SUID / SGID
-- Configuraciones inseguras de sudo
-- Permisos incorrectos en archivos críticos
-- Tareas cron mal configuradas
-- Linux capabilities peligrosas
-- Exposición del socket de Docker
+- Búsqueda de binarios SUID / SGID
+- Revisión de configuraciones sudo
+- Permisos críticos inseguros
+- Tareas programadas (cron)
+- Linux Capabilities
+- Exposición de Docker
+- Usuarios con UID 0 adicionales
+- Riesgos de PATH Hijacking
 
-> Esta herramienta **NO explota vulnerabilidades**.  
-> Está diseñada para **auditoría, visibilidad y hardening**.
+Cada módulo contribuye a un sistema de puntuación global de riesgo.
 
-## 🧱 Filosofía del proyecto
+## 📊 Sistema de Risk Score
 
-PrivEsc-Guard no se limita a detectar problemas.  
-Cada hallazgo proporciona:
+La herramienta calcula un Risk Score acumulativo (0–100) basado en los hallazgos detectados.
 
-- Descripción del riesgo
-- Explicación del impacto
-- Referencias técnicas
-- Recomendaciones de mitigación
+## 📄 Reportes generados
 
-El objetivo es **aprender y reforzar**, no solo escanear.
+Al ejecutar la herramienta se generan automáticamente:
 
-## 🚧 Estado del proyecto
+- Reporte en texto plano (.txt)
+- Reporte visual en HTML (.html)
 
-Este proyecto se encuentra actualmente en **desarrollo activo**.  
-Las primeras versiones se centran en la arquitectura base y los checks fundamentales.
+El reporte HTML incluye:
 
-## ⚠️ Disclaimer
+- Risk Score destacado
+- Nivel de exposición
+- Resumen por módulo
+- Fecha de ejecución
+- Versión de la herramienta
 
-PrivEsc-Guard está destinado **únicamente a sistemas donde se tenga autorización expresa**.  
-El autor no se hace responsable del uso indebido de esta herramienta.
+Diseño limpio, profesional y fácil de compartir.
+
+## 🚀 Uso
+
+Ejecución normal:
+
+./privesc-guard.sh
+
+Ejecutar solo un módulo (puedes seleccionar el módulo que quieras)
+
+./privesc-guard.sh --only suid
+
+Omitir un módulo:
+
+./privesc-guard.sh --skip docker
+
+Lanzar sin generar reportes:
+
+./privesc-guard.sh --no-report
+
+
+## 📁 Estructura del proyecto
+
+PrivEsc-Guard/
+├── core/
+├── modules/
+├── output/reports/
+├── privesc-guard.sh
+└── README.md
+
