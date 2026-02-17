@@ -59,25 +59,26 @@ Diseño limpio, profesional y fácil de compartir.
 
 ## 🚀 Uso
 
-##Ejecución normal:
+## Ejecución normal:
 
 ./privesc-guard.sh
 
-##Ejecutar solo un módulo (puedes seleccionar el módulo que quieras)
+## Ejecutar solo un módulo (puedes seleccionar el módulo que quieras)
 
 ./privesc-guard.sh --only suid
 
-##Omitir un módulo:
+## Omitir un módulo:
 
 ./privesc-guard.sh --skip docker
 
-##Lanzar sin generar reportes:
+## Lanzar sin generar reportes:
 
 ./privesc-guard.sh --no-report
 
 
 ## 📁 Estructura del proyecto
 
+```bash
 PrivEsc-Guard/
 ├── core/
 ├── modules/
@@ -86,3 +87,4 @@ PrivEsc-Guard/
 ├── assets/
 ├── privesc-guard.sh
 └── README.md
+```
